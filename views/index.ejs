@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Onsite 1</title>
+    <style>
+        body{
+            margin:0;
+            width:100%;
+            height:100%;
+        }
+        .navbar{
+            top:0;
+            left:0;
+            right:0;
+            border:1px solid white;
+            margin-bottom:50px;
+            align-items: center;
+            background-color:#6dd5ed;
+        }
+        .title{
+            position:relative;
+            left:650px;
+            font-family:Arial, Helvetica, sans-serif;
+            color:white;
+        }
+        .form{
+            vertical-align: auto;
+            margin-bottom:20px;
+            align-items:center;
+            display:flex;
+        }
+        input[type=url], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  margin-right:0;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align:center;
+  background-color: #04AA6D;
+  color: white;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1 class="title">URL Shortner</h1>
+    </div>
+    <div class="form">
+        <form action="/shrink" method="POST">
+        <label for="fullurl" >Enter the url pls</label>
+        <input name="fullurl" type="url" id="fullurl" placeholder="Enter the url"/>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+    <table id="customers">
+        <thead>
+            <tr>
+                <th scope="col">Full url</th>
+                <th scope="col">Short url</th>
+                <th scope="col">Clicks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% shortUrls.forEach(shorturls => { %>
+               <tr>
+                <td ><a href="<%= shorturls.fullurl %>"><%= shorturls.fullurl %></a></td>
+                <td><a href="<%= shorturls.short %>"> <%= shorturls.short %></a></td>
+                <td><%= shorturls.clicks %></td>
+            </tr> 
+           <% }); %>
+            
+        </tbody>
+    </table>
+</body>
+</html>
